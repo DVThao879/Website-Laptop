@@ -3,12 +3,6 @@
 </div>
 <div class="formcontent">
     <form action="index.php?act=adddm" method="post">
-        <p style="color: red; text-align:center;">
-            <?php 
-            if (isset($thongbao1) && !empty($thongbao1)) {
-            echo $thongbao1;
-            } ?>
-        </p>
         <div>
             <label>Tên danh mục</label><br>
             <input type="text" name="tendm" placeholder="Nhập tên danh mục">

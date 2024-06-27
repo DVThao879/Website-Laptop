@@ -3,12 +3,6 @@
 </div>
 <div class="formcontent">
     <form action="index.php?act=addsp" method="post" enctype="multipart/form-data">
-        <p style="color: red; text-align:center;">
-            <?php 
-            if (isset($thongbao6) && !empty($thongbao6)) {
-            echo $thongbao6;
-            } ?>
-        </p>
         <div>
             <label>Danh mục</label>
             <select name="iddm">

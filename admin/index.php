@@ -1,8 +1,8 @@
 <?php
-session_start();
-if (!$_SESSION['user'] || $_SESSION['user']['role'] == 0) { /*Cam vao trang neu ma no ko dang nhap + cai role=0 */
-    header("location: ../view/index.php");
-}
+// session_start();
+// if (!$_SESSION['user'] || $_SESSION['user']['role'] == 0) { /*Cấm vào trang nếu không đăng nhập + cái role = 0 */
+//     header("location: ../view/index.php");
+// }
 include "../model/pdo.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
@@ -32,7 +32,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 } else {
                     $tendm = $_POST['tendm'];
                     add_danhmuc($tendm);
-                    $thongbao1 = "Thêm thành công";
+                    header("location: index.php?act=listdm");
                 }
             }
             include "danhmuc/add.php";
@@ -147,7 +147,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                     $target_file = $image_path . time() . basename($_FILES['img']['name']);
                     move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
                     add_sanpham($name, $mota, $price, $cpu, $ram, $ocung, $carddohoa, $manhinh, $img, $giamgia, $iddm);
-                    $thongbao6 = "Thêm thành công";
+                    header("location: index.php?act=listsp");
                 }
             }
             include "sanpham/add.php";

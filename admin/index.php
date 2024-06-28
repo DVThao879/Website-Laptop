@@ -3,6 +3,7 @@
 // if (!$_SESSION['user'] || $_SESSION['user']['role'] == 0) { /*Cấm vào trang nếu không đăng nhập + cái role = 0 */
 //     header("location: ../view/index.php");
 // }
+ob_start();
 include "../model/pdo.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
@@ -12,7 +13,6 @@ include "../model/thongke.php";
 include "../model/cart.php";
 include "../model/bienthe.php";
 include "../global.php";
-
 include "header.php";
 
 if (isset($_GET['act']) && !empty($_GET['act'])) {
@@ -27,13 +27,9 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             //Thêm danh mục
         case 'adddm':
             if (isset($_POST['themdm'])) {
-                if (empty($_POST['tendm'])) {
-                    $thongbao1 = "Không được để trống!";
-                } else {
-                    $tendm = $_POST['tendm'];
-                    add_danhmuc($tendm);
-                    header("location: index.php?act=listdm");
-                }
+                $tendm = $_POST['tendm'];
+                add_danhmuc($tendm);
+                header("location: index.php?act=listdm");
             }
             include "danhmuc/add.php";
             break;
@@ -66,9 +62,6 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             //Thêm tài khoản
         case 'addtk':
             if (isset($_POST['themtk'])) {
-                if (empty($_POST['user']) || empty($_POST['email']) || empty($_POST['pass'])) {
-                    $thongbao5 = "Vui lòng nhập đủ 3 trường user, pass, email!";
-                } else {
                     $user = $_POST['user'];
                     $pass = $_POST['pass'];
                     $email = $_POST['email'];
@@ -79,8 +72,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                     $target_file = $image_path . time() . basename($_FILES['img']['name']);
                     move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
                     add_taikhoan_admin($user, $pass, $img, $email, $address, $tel, $role);
-                    $thongbao5 = "Thêm thành công";
-                }
+                    header("location: index.php?act=listtk");
             }
             include "taikhoan/add.php";
             break;
@@ -141,14 +133,10 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                 $manhinh = $_POST['manhinh'];
                 $giamgia = $_POST['giamgia'];
                 $img = $_FILES['img']['name'];
-                if (empty($name) || empty($price) || empty($img) || empty($mota) || empty($giamgia) || empty($cpu) || empty($ram) || empty($carddohoa) || empty($manhinh) || empty($ocung)) {
-                    $thongbao6 = "Vui lòng nhập đủ!";
-                } else {
                     $target_file = $image_path . time() . basename($_FILES['img']['name']);
                     move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
                     add_sanpham($name, $mota, $price, $cpu, $ram, $ocung, $carddohoa, $manhinh, $img, $giamgia, $iddm);
                     header("location: index.php?act=listsp");
-                }
             }
             include "sanpham/add.php";
             break;
@@ -207,7 +195,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             break;
         case 'thongke':
             $thongke = load_thongke();
-            $thongke1=thongke();
+            $thongke1 = thongke();
             include "thongke/list.php";
             break;
         case 'bieudo':
@@ -224,13 +212,9 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             break;
         case 'addram':
             if (isset($_POST['themram'])) {
-                if (empty($_POST['ramsp'])) {
-                    $thongbao9 = "Không được để trống!";
-                } else {
                     $ramsp = $_POST['ramsp'];
                     add_ram($ramsp);
-                    $thongbao9 = "Thêm thành công";
-                }
+                    header("location: index.php?act=listram");
             }
             include "spbienthe/bt_ram/add.php";
             break;
@@ -260,13 +244,9 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             break;
         case 'addmau':
             if (isset($_POST['themmau'])) {
-                if (empty($_POST['mausp'])) {
-                    $thongbao10 = "Không được để trống!";
-                } else {
                     $mausp = $_POST['mausp'];
                     add_mau($mausp);
-                    $thongbao10 = "Thêm thành công";
-                }
+                    header("location: index.php?act=listmau");
             }
             include "spbienthe/bt_mau/add.php";
             break;
@@ -296,16 +276,12 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             break;
         case 'addbt':
             if (isset($_POST['thembt'])) {
-                if (empty($_POST['soluong'])) {
-                    $thongbao11 = "Không được để trống!";
-                } else {
                     $idsp = $_POST['idsp'];
                     $idram = $_POST['idram'];
                     $idmau = $_POST['idmau'];
                     $soluong = $_POST['soluong'];
                     add_spbt($idsp, $idram, $idmau, $soluong);
-                    $thongbao11 = "Thêm thành công";
-                }
+                    header("location: index.php?act=listbt");
             }
             $listram = loadall_ram();
             $listmau = loadall_mau();
@@ -327,7 +303,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             }
             $listram = loadall_ram();
             $listmau = loadall_mau();
-            $listsp = loadall_sanpham("",0);
+            $listsp = loadall_sanpham("", 0);
             include "spbienthe/edit.php";
             break;
         case 'deletebt':
@@ -342,7 +318,7 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             if (isset($_POST['TimKiem'])) {
                 $keyw = $_POST['keyw'];
             } else {
-                $keyw ="";
+                $keyw = "";
             }
             $listbill = loadall_billdh($keyw);
             include "donhang/list.php";
@@ -369,9 +345,12 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
             break;
             //Trường hợp khác
         default:
+            $listdm = loadall_danhmuc();
             include "home.php";
             break;
     }
 } else {
+    $listdm = loadall_danhmuc();
     include "home.php";
 }
+include "footer.php";

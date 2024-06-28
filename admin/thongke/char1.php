@@ -9,10 +9,10 @@
 </head>
 
 <body>
-
-        <div class="mb10">
-            <canvas id="revenueChart" width="400" height="400"></canvas>
-        </div>
+    <a class="btn btn-outline-primary my-2 w-25 mx-auto" href="index.php?act=thongke">Quay lại</a>
+    <div class="mb10">
+        <canvas id="revenueChart" width="400" height="400"></canvas>
+    </div>
     <!-- ///////////////////////////// -->
     <script>
         var revenueData = <?php echo json_encode(thongke()); ?>;

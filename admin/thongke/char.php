@@ -25,6 +25,7 @@ foreach ($listtk as $row) {
 </head>
 
 <body>
+    <a class="btn btn-outline-primary my-2 w-25 mx-auto" href="index.php?act=thongke">Quay lại</a>
     <div style="width: 80%; margin: 10px auto;">
         <canvas id="combinedChart"></canvas>
     </div>

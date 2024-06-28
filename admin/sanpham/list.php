@@ -1,61 +1,127 @@
-<div class="mb10">
-    <h3>DANH SÁCH SẢN PHẨM</h3>
-</div>
-<div class="formcontent">
-    <form action="index.php?act=listsp" method="post">
-        <input type="text" name="keyw" placeholder="Nhập sản phẩm cần tìm"><br><br>
-        <select name="iddm">
-            <option value="0" selected>Tất cả</option>
-            <?php foreach ($listdm as $dm) : ?>
-                <option value="<?php echo $dm['id'] ?>"><?php echo $dm['name'] ?></option>
-            <?php endforeach ?>
-        </select><br><br>
-        <input type="submit" name="clickOK" value="Tìm kiếm"><br><br>
-    </form>
-    <form action="index.php?act=addsp" method="post">
-        <div class="mb10">
-            <table class="mb10 content-table">
-                <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Mã sp</th>
-                    <th>Hình ảnh</th>
-                    <th>Tên sp</th>
-                    <th>Price</th>
-                    <th>Sale</th>
-                    <th>Mô tả</th>
-                    <th>Lượt xem</th>
-                    <th>Chức năng</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($listsp as $key => $sp) : ?>
-                <tr>
-                    <td><?php echo $key + 1 ?></td>
-                    <td>SP<?php echo $sp['id'] ?></td>
-                    <td>
-                        <?php $img=$image_path.$sp['img']; if(is_file($img)) : ?>
-                            <!-- Nếu đường dẫn ảnh đúng thì in ra if -->
-                            <img src="<?php echo $img ?>" alt="" width="70px" height="50px">
-                        <?php else : ?>
-                            <!-- Còn else là đường dẫn sai -->
-                            <span style="color: red; font-size: 14px;">No file img!</span>
-                        <?php endif ?>
-                    </td>
-                    <td><?php echo $sp['name'] ?></td>
-                    <td><?php echo number_format($sp['price'], 0, ",", ".") ?></td>
-                    <td><?php echo $sp['giamgia'] ?>%</td>
-                    <td class="mota"><?php echo $sp['mota'] ?></td>
-                    <td><?php echo $sp['luotxem'] ?></td>
-                    <td>
-                        <a href="?act=editsp&idsp=<?php echo $sp['id'] ?>"><input type="button" value="Sửa"></a><br><br>
-                        <a onclick="return confirm('Bạn có chắc chắn muốn xóa')" href="?act=deletesp&idsp=<?php echo $sp['id'] ?>"><input type="button" value="Xóa"></a>
-                    </td>
-                </tr>
-                <?php endforeach ?>
-                </tbody>
-            </table>
+<main class="content px-3 py-4">
+    <div class="container-fluid">
+        <div class="mb-3">
+            <h3 class="fw-bold fs-4 mb-3">Admin Dashboard</h3>
+            <div class="row">
+                <div class="col-12 col-md-4 ">
+                    <div class="card border-0">
+                        <div class="card-body py-4">
+                            <h5 class="mb-2 fw-bold">
+                                Memebers Progress
+                            </h5>
+                            <p class="mb-2 fw-bold">
+                                $72,540
+                            </p>
+                            <div class="mb-0">
+                                <span class="badge text-success me-2">
+                                    +9.0%
+                                </span>
+                                <span class=" fw-bold">
+                                    Since Last Month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 ">
+                    <div class="card  border-0">
+                        <div class="card-body py-4">
+                            <h5 class="mb-2 fw-bold">
+                                Memebers Progress
+                            </h5>
+                            <p class="mb-2 fw-bold">
+                                $72,540
+                            </p>
+                            <div class="mb-0">
+                                <span class="badge text-success me-2">
+                                    +9.0%
+                                </span>
+                                <span class="fw-bold">
+                                    Since Last Month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 ">
+                    <div class="card border-0">
+                        <div class="card-body py-4">
+                            <h5 class="mb-2 fw-bold">
+                                Memebers Progress
+                            </h5>
+                            <p class="mb-2 fw-bold">
+                                $72,540
+                            </p>
+                            <div class="mb-0">
+                                <span class="badge text-success me-2">
+                                    +9.0%
+                                </span>
+                                <span class="fw-bold">
+                                    Since Last Month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="fw-bold fs-4 mt-3">DANH SÁCH SẢN PHẨM</h3>
+            <form action="index.php?act=listsp" method="post" class="d-flex" role="search">
+                <input class="form-control me-2" type="text" name="keyw" placeholder="Nhập sản phẩm cần tìm..." aria-label="Search" name="keyw">
+                <select name="iddm" class="form-select me-2">
+                    <option value="0" selected>Tất cả</option>
+                    <?php foreach ($listdm as $dm) : ?>
+                        <option value="<?php echo $dm['id'] ?>"><?php echo $dm['name'] ?></option>
+                    <?php endforeach ?>
+                </select>
+                <button class="btn btn-outline-success" type="submit" name="clickOK">Search</button>
+            </form>
+            <a class="btn btn-outline-primary my-2" href="index.php?act=addsp">Thêm</a>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="highlight">
+                                <th scope="col">#</th>
+                                <th scope="col">Mã sp</th>
+                                <th scope="col">Img</th>
+                                <th scope="col">Tên sp</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Sale</th>
+                                <th scope="col">Mô tả</th>
+                                <th scope="col">Lượt xem</th>
+                                <th scope="col">Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($listsp as $key => $sp) : ?>
+                                <tr>
+                                    <td><?php echo $key + 1 ?></td>
+                                    <td>SP<?php echo $sp['id'] ?></td>
+                                    <td>
+                                        <?php $img = $image_path . $sp['img'];
+                                        if (is_file($img)) : ?>
+                                            <!-- Nếu đường dẫn ảnh đúng thì in ra if -->
+                                            <img src="<?php echo $img ?>" alt="" width="70px" height="50px">
+                                        <?php else : ?>
+                                            <!-- Còn else là đường dẫn sai -->
+                                            <span style="color: red; font-size: 14px;">No file img!</span>
+                                        <?php endif ?>
+                                    </td>
+                                    <td><?php echo $sp['name'] ?></td>
+                                    <td><?php echo number_format($sp['price'], 0, ",", ".") ?></td>
+                                    <td><?php echo $sp['giamgia'] ?>%</td>
+                                    <td class="mota"><?php echo $sp['mota'] ?></td>
+                                    <td><?php echo $sp['luotxem'] ?></td>
+                                    <td>
+                                        <a class="btn btn-outline-success mb-2" href="?act=editsp&idsp=<?php echo $sp['id'] ?>">Sửa</a>
+                                        <a class="btn btn-outline-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" href="?act=deletesp&idsp=<?php echo $sp['id'] ?>">Xóa</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <a href="index.php?act=addsp"><input type="button" value="Thêm mới"></a>
-    </form>
-</div>
+    </div>
+</main>

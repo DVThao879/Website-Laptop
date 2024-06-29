@@ -67,7 +67,7 @@
             <h3 class="fw-bold fs-4 mt-3">CẬP NHẬT SẢN PHẨM</h3>
             <div class="row">
                 <div class="col-12">
-                    <form action="index.php?act=editsp" method="post">
+                    <form action="index.php?act=editsp" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label class="form-label">Danh mục</label>
                             <select name="iddm" class="form-select">

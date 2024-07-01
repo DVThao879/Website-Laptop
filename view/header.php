@@ -39,9 +39,9 @@
                                     </a>
                                 <?php else : ?>
                                 <li class="nav-item dropdown">
-                                    <a class="acc nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                                    <a class="acc nav-link mt-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
                                         <p class="avatar-header"><?php echo $first_letter; ?></p>
-                                        <p class="mt-3"><?php echo $_SESSION['user']['user'] ?></p>
+                                        <p><?php echo $_SESSION['user']['user'] ?></p>
                                     </a>
                                 <?php endif ?>
                                 <ul class="dropdown-menu">

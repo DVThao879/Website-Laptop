@@ -1,4 +1,4 @@
-<div class="bill">
+<div class="bill mt-5">
     <div class="left">
         <form action="index.php?act=billcomfirm" method="post">
             <div class="order-form">
@@ -107,7 +107,6 @@
             <?php $displayCount++;
                 }
             } ?>
-
         </div>
         <div class="giohang2">
             <div>

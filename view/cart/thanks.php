@@ -1,5 +1,5 @@
 <!-- <h2 style="text-align: center;">CẢM ƠN BẠN ĐÃ ĐẶT HÀNG</h2> -->
-<div class="billcomfirm">
+<div class="billcomfirm mt-5">
     <i class="fa-solid fa-bag-shopping" style="color: #009B48;font-size: 100px; margin-bottom:15px"></i>
     <h4>Cảm ơn bạn đã mua hàng</h4>
     <p>Chào <?php echo $_SESSION['user']['user'] ?>, đơn hàng của bạn với mã DA1-<?php echo $bill['id'] ?> đã được đặt thành công</p>

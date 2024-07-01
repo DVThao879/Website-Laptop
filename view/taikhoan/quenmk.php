@@ -1,4 +1,4 @@
-<div id="wrapper-1">
+<div id="wrapper-1" class="mt-5">
 <h3>Quên mật khẩu</h3><br>
     <form action="index.php?act=quenmk" method="post">
         <div class="form-group">

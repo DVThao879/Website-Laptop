@@ -1,4 +1,5 @@
-<div class="boxtaikhoan">
+<div class="container">
+<div class="boxtaikhoan mt-5">
     <div class="boxtrai">
         <div class="boxtrai-img">
             <?php $first_letter = strtoupper(substr($_SESSION['user']['email'], 0, 1)) ?>
@@ -71,4 +72,5 @@
                 </tbody>
             </table>
     </div>
+</div>
 </div>

@@ -1,4 +1,4 @@
-<div id="wrapper-2">
+<div id="wrapper-2" class="mt-5">
 <h3>Đổi mật khẩu</h3><br>
     <form action="index.php?act=doimk" method="post">
         <div class="form-group">

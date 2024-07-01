@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" class="mt-5">
 <h3>Đăng ký</h3><br>
     <form action="index.php?act=dangky" method="post">
         <div class="form-group">
